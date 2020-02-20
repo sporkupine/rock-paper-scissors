@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rock, Paper, Scissors</title>
+</head>
+<body>
+<script>
+
+//computer choice    
+
+function computerPlay(){
+    let options = ["rock", "paper", "scissors"];
+    let computerChoice = options[Math.floor(Math.random()*options.length)]
+    return(computerChoice);
+}
+
+//plays a round, gives a winner, updates score
+function playRound(){
+    let computerChoice = computerPlay();
+    let playerChoice = prompt("rock, paper, scissors!");
+    
+    let win = "Player wins! " + playerChoice + " beats " + computerChoice;
+    let loss = "Computer wins! " + computerChoice + " beats " + playerChoice;
+    
+
+    if ((playerChoice.toLowerCase() == "rock") && (computerChoice == "paper") || (playerChoice.toLowerCase() == "paper") && (computerChoice == "scissors") || (playerChoice.toLowerCase() == "scissors") && (computerChoice == "rock")){
+        console.log(loss);
+        cScore++;
+    }
+    else if ((playerChoice.toLowerCase() == "rock") && (computerChoice == "scissors") || (playerChoice.toLowerCase() == "paper") && (computerChoice == "rock") || (playerChoice.toLowerCase() == "scissors") && (computerChoice =="paper")){
+        console.log(win);
+        pScore++
+    }
+    else if (playerChoice.toLowerCase() == computerChoice){
+        console.log(playerChoice + " vs. " + computerChoice + ". It's a tie!")
+    }
+    else{
+        console.log(playerChoice + " is not a valid choice. Try rock, paper, or scissors.")
+
+    }
+}
+let pScore = 0;
+let cScore = 0;
+
+//5 round game
+function game(){
+    let playerChoice = " ";
+    computerChoice = computerPlay();
+    for(i=0; i<5; i++){
+        computerChoice = computerPlay()
+        playRound(playerChoice, computerChoice);
+
+    }
+
+    //output message with match score
+    switch(true){
+        default:
+            alert("Final score: " + pScore + " - " + cScore + ". It's a tie!");
+            break;
+        case pScore>cScore:
+            alert("Final score: " + pScore + " - " + cScore + ". You win!!!");
+            break;
+        case pScore<cScore:
+        alert("Final score: " + pScore + " - " + cScore + ". Computer wins.");
+            break;
+    }
+    pScore = 0;
+    cScore = 0;
+}
+game()
+
+
+   
+</script>
+    
+</body>
+</html> 
